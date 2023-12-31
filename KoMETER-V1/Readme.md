@@ -1,5 +1,5 @@
 # KoMETER-V (KoBERT version)
-Base Architecture : https://github.com/zdou0830/METER
+Base Architecture : https://github.com/zdou0830/METER  
 KoBERT : https://huggingface.co/monologg/kobert
 
 ## Environment
