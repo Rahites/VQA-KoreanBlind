@@ -14,10 +14,11 @@ def get_pretrained_tokenizer(from_pretrained):
     if torch.distributed.is_initialized():
         if torch.distributed.get_rank() == 0:
             if 'roberta' in from_pretrained:
+                print('####### Apply RoBERTa Tokenizer! #######')
                 RobertaTokenizer.from_pretrained(from_pretrained)
             elif 'kobert' in from_pretrained:
                 KoBertTokenizer.from_pretrained('monologg/kobert')
-                print('####### Apply KoBertTokenizer! #######')
+                print('####### Apply KoBert Tokenizer! #######')
             else:
                 BertTokenizer.from_pretrained(
                     from_pretrained, do_lower_case="uncased" in from_pretrained
@@ -25,9 +26,10 @@ def get_pretrained_tokenizer(from_pretrained):
         torch.distributed.barrier()
 
     if 'roberta' in from_pretrained:
+        print('####### Apply RoBERTa Tokenizer! #######')
         return RobertaTokenizer.from_pretrained(from_pretrained)
     elif 'kobert' in from_pretrained:
-        print('####### Apply KoBertTokenizer! #######')
+        print('####### Apply KoBert Tokenizer! #######')
         return KoBertTokenizer.from_pretrained('monologg/kobert')
     return BertTokenizer.from_pretrained(
         from_pretrained, do_lower_case="uncased" in from_pretrained
